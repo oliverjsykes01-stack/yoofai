@@ -261,7 +261,7 @@ export default function Home() {
               What parents and educators say
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Hear from families who've discovered the joy of AI learning with Yoof
+              Hear from families who&apos;ve discovered the joy of AI learning with Yoof
             </p>
           </div>
 
@@ -285,7 +285,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "My kids absolutely love the AI art activities! They're learning about technology while expressing their creativity. It's the perfect blend of education and fun."
+                  &ldquo;My kids absolutely love the AI art activities! They&apos;re learning about technology while expressing their creativity. It&apos;s the perfect blend of education and fun.&rdquo;
                 </p>
               </CardContent>
             </Card>
@@ -309,7 +309,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "Yoof has transformed how I teach digital literacy in my classroom. The hands-on approach makes complex AI concepts accessible to young learners."
+                  &ldquo;Yoof has transformed how I teach digital literacy in my classroom. The hands-on approach makes complex AI concepts accessible to young learners.&rdquo;
                 </p>
               </CardContent>
             </Card>
@@ -333,7 +333,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "The structured curriculum and safe environment give me peace of mind. My son has developed critical thinking skills I never expected at his age."
+                  &ldquo;The structured curriculum and safe environment give me peace of mind. My son has developed critical thinking skills I never expected at his age.&rdquo;
                 </p>
               </CardContent>
             </Card>
@@ -357,7 +357,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "As someone in tech, I wanted my daughter to understand AI early. Yoof makes it approachable without dumbing down the concepts. Brilliant resource!"
+                  &ldquo;As someone in tech, I wanted my daughter to understand AI early. Yoof makes it approachable without dumbing down the concepts. Brilliant resource!&rdquo;
                 </p>
               </CardContent>
             </Card>
@@ -381,7 +381,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "The coding activities are engaging and age-appropriate. Students who were intimidated by programming are now creating their own projects confidently."
+                  &ldquo;The coding activities are engaging and age-appropriate. Students who were intimidated by programming are now creating their own projects confidently.&rdquo;
                 </p>
               </CardContent>
             </Card>
@@ -405,7 +405,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  "Yoof keeps all three of my kids engaged, each at their own level. The progress tracking helps me see how much they're actually learning while having fun."
+                  &ldquo;Yoof keeps all three of my kids engaged, each at their own level. The progress tracking helps me see how much they&apos;re actually learning while having fun.&rdquo;
                 </p>
               </CardContent>
             </Card>
