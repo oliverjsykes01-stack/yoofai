@@ -119,7 +119,7 @@ export default function DashboardPage() {
             </Avatar>
             <div>
               <h1 className="text-3xl font-bold">Welcome back, Emma!</h1>
-              <p className="text-muted-foreground">Let's continue your AI learning journey</p>
+              <p className="text-muted-foreground">Let&apos;s continue your AI learning journey</p>
             </div>
           </div>
           <div className="flex gap-3">

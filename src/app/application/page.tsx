@@ -58,7 +58,7 @@ export default function ApplicationPage() {
     { value: "game-design", label: "Game Design" },
   ];
 
-  const updateFormData = (field: keyof FormData, value: any) => {
+  const updateFormData = (field: keyof FormData, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error for this field
     if (errors[field]) {
@@ -148,17 +148,17 @@ export default function ApplicationPage() {
           <CardContent className="space-y-4">
             <Alert>
               <AlertDescription>
-                We've received your application for <strong>{formData.childName}</strong>.
+                We&apos;ve received your application for <strong>{formData.childName}</strong>.
                 A confirmation email has been sent to <strong>{formData.email}</strong>.
               </AlertDescription>
             </Alert>
 
             <div className="bg-muted p-4 rounded-lg space-y-2">
-              <h3 className="font-semibold">What's Next?</h3>
+              <h3 className="font-semibold">What&apos;s Next?</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>✓ Our team will review your application within 2-3 business days</li>
-                <li>✓ You'll receive an email with next steps and onboarding information</li>
-                <li>✓ We'll schedule an introductory call to discuss your child's learning journey</li>
+                <li>✓ You&apos;ll receive an email with next steps and onboarding information</li>
+                <li>✓ We&apos;ll schedule an introductory call to discuss your child&apos;s learning journey</li>
               </ul>
             </div>
 
@@ -196,7 +196,7 @@ export default function ApplicationPage() {
         <div className="text-center space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold">Apply to Yoof</h1>
           <p className="text-muted-foreground">
-            Start your child's AI learning journey today
+            Start your child&apos;s AI learning journey today
           </p>
         </div>
 
@@ -275,7 +275,7 @@ export default function ApplicationPage() {
             {step === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="childName">Child's Name *</Label>
+                  <Label htmlFor="childName">Child&apos;s Name *</Label>
                   <Input
                     id="childName"
                     placeholder="Emma Smith"
