@@ -1,84 +1,165 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { CheckCircle2, Sparkles, Users, Palette, Code, Brain, Star } from "lucide-react";
+import { CheckCircle2, Sparkles, Users, Palette, Code, Brain, Star, ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll(".fade-in");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
-      <section className="px-6 py-14 md:px-10 md:py-24">
-        <div className="mx-auto max-w-5xl grid gap-10 md:gap-14">
-          <div className="text-center md:text-left grid gap-6">
-            <p className="text-sm text-muted-foreground tracking-wide">Welcome to</p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
-              Yoof — playful learning for the AI age
+      <section className="px-6 py-20 md:px-10 md:py-32 bg-gradient-to-b from-background to-muted/20">
+        <div className="mx-auto max-w-6xl">
+          {/* Notification Badge */}
+          <div className="flex justify-center mb-8 fade-in">
+            <Badge variant="secondary" className="px-4 py-2 text-sm font-normal rounded-full">
+              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+              Now Accepting Applications — Limited Spots
+            </Badge>
+          </div>
+
+          {/* Hero Title */}
+          <div ref={heroRef} className="text-center mb-12 fade-in">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+              <span className="inline-block">Playful</span>{" "}
+              <span className="inline-flex items-center gap-4">
+                <span className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl md:rounded-3xl shadow-lg transform -rotate-3">
+                  <Sparkles className="w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white" />
+                </span>
+                <span className="font-light text-muted-foreground">AI</span>
+              </span>
+              <br />
+              <span className="font-light text-muted-foreground">Learning for</span>{" "}
+              <span className="inline-flex items-center gap-4">
+                <span className="relative inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl md:rounded-3xl shadow-lg transform rotate-3">
+                  <Brain className="w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white" />
+                </span>
+                <span className="inline-block">Young</span>
+              </span>
+              <br />
+              <span className="inline-block">Minds</span>
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl">
-              An interactive, SEO-friendly directory that teaches kids the basics of AI tools
-              through creative play like art and craft activities.
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
+              We help kids discover the magic of AI through creative play, hands-on projects,
+              and safe exploration — making technology education fun and accessible.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/application">
-                <Button size="lg">Start Your Journey</Button>
+                <Button size="lg" className="text-lg px-8 py-6 rounded-full group">
+                  Start Learning Today
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Button>
               </Link>
               <Link href="#features">
-                <Button variant="secondary" size="lg">Learn More</Button>
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 rounded-full">
+                  Explore Features
+                </Button>
               </Link>
+            </div>
+
+            {/* Social Proof */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex -space-x-3">
+                {["SJ", "MP", "EL", "DM", "RC"].map((initials, i) => (
+                  <Avatar key={i} className="border-2 border-background w-10 h-10">
+                    <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white text-xs">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Trusted by <span className="font-semibold text-foreground">200+</span> families and educators
+              </p>
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Palette className="w-5 h-5" />
-                  Creative Activities
-                </CardTitle>
+          {/* Quick Stats */}
+          <div className="grid gap-4 md:grid-cols-3 fade-in">
+            <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
+              <CardHeader className="text-center pb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3 animate-float">
+                  <Palette className="w-7 h-7 text-white" />
+                </div>
+                <CardTitle className="text-lg">Creative Activities</CardTitle>
               </CardHeader>
-              <CardContent>Hands-on projects that introduce core AI ideas.</CardContent>
+              <CardContent className="text-center text-sm text-muted-foreground">
+                Hands-on projects that introduce core AI concepts through art and creativity
+              </CardContent>
             </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Brain className="w-5 h-5" />
-                  Guided Learning
-                </CardTitle>
+
+            <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
+              <CardHeader className="text-center pb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-3 animate-float" style={{ animationDelay: '0.2s' }}>
+                  <Brain className="w-7 h-7 text-white" />
+                </div>
+                <CardTitle className="text-lg">Guided Learning</CardTitle>
               </CardHeader>
-              <CardContent>Short, engaging steps designed for young learners.</CardContent>
+              <CardContent className="text-center text-sm text-muted-foreground">
+                Short, engaging steps designed specifically for young learners
+              </CardContent>
             </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5" />
-                  AI-Powered
-                </CardTitle>
+
+            <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
+              <CardHeader className="text-center pb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-3 animate-float" style={{ animationDelay: '0.4s' }}>
+                  <Sparkles className="w-7 h-7 text-white" />
+                </div>
+                <CardTitle className="text-lg">AI-Powered</CardTitle>
               </CardHeader>
-              <CardContent>Learn by doing with real AI tools in safe environments.</CardContent>
+              <CardContent className="text-center text-sm text-muted-foreground">
+                Learn by doing with real AI tools in safe, supervised environments
+              </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      <Separator />
-
       {/* Features Section */}
-      <section id="features" className="px-6 py-14 md:px-10 md:py-24 bg-muted/30">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <Badge className="mb-4">Features</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Everything your child needs to thrive
+      <section id="features" className="px-6 py-20 md:px-10 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center mb-16 fade-in">
+            <Badge variant="secondary" className="mb-4 px-4 py-2">Features</Badge>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Everything Your Child{" "}
+              <span className="gradient-text">Needs to Thrive</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Yoof combines creativity, technology, and education to make AI learning fun and accessible for all ages
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Yoof combines creativity, technology, and education to make AI learning
+              fun and accessible for all ages
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {/* Bento Grid Layout */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 fade-in">
             <Card>
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
