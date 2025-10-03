@@ -1,12 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    allowedDevOrigins: [
-      "https://page-athletes-jumping-earlier.trycloudflare.com",
-      "https://yoofai-rvdk.vercel.app",
-      "https://yoofai-rvdk-ozzys-projects-4f3fc96b.vercel.app",
-    ],
-  },
+  // Removed experimental.allowedDevOrigins - not supported in Next.js 15.5.4
 };
 
 export default nextConfig;

@@ -28,13 +28,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Format grade level for display
-    const gradeLevelDisplay = {
+    const gradeLevelMap: Record<string, string> = {
       'primary-ks1': 'Key Stage 1 (Years 1-2)',
       'primary-ks2': 'Key Stage 2 (Years 3-6)',
       'secondary-ks3': 'Key Stage 3 (Years 7-9)',
       'secondary-ks4': 'Key Stage 4 (Years 10-11)',
       'other': 'Other/Home Education'
-    }[gradeLevel] || gradeLevel;
+    };
+    const gradeLevelDisplay = gradeLevelMap[gradeLevel] || gradeLevel;
 
     // Format learning focus for display
     const learningFocusDisplay = learningFocus.map((focus: string) => {
@@ -57,9 +58,13 @@ export async function POST(request: NextRequest) {
     });
 
     // Send confirmation email to parent
+    // In test mode, send to verified email (oliverjsykes01@gmail.com) instead of user's email
+    const testMode = !process.env.RESEND_DOMAIN_VERIFIED;
+    const recipientEmail = testMode ? 'oliverjsykes01@gmail.com' : email;
+
     const confirmationEmail = await resend.emails.send({
       from: 'Yoof <noreply@yoofai.co.uk>',
-      to: email,
+      to: recipientEmail,
       subject: 'Application Received - Yoof AI Learning',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -97,9 +102,9 @@ export async function POST(request: NextRequest) {
     });
 
     // Send notification email to admin
-    const adminEmail = await resend.emails.send({
+    await resend.emails.send({
       from: 'Yoof Application <noreply@yoofai.co.uk>',
-      to: 'hello@yoofai.co.uk',
+      to: testMode ? 'oliverjsykes01@gmail.com' : 'hello@yoofai.co.uk',
       subject: `New Application: ${childName} (${parentName})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
